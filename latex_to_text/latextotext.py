@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/latex_to_text/env python3
 
 # Convert a LaTeX file to txt file
 # Usage : 'python3 latextotext.py toto.tex'

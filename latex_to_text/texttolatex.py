@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/latex_to_text/env python3
 
 # Convert a text file + a dictionary file to a LaTeX file
 # Usage : 'python3 texttolatex.py toto.txt'
