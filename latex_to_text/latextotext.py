@@ -10,6 +10,7 @@
 # Licence CC-BY-SA 4.0
 
 import argparse
+import pathlib
 import re
 import sys
 import os
@@ -110,6 +111,10 @@ def convert_latex_to_text(tex_file, output_file=None, dictionary_file=None):
     regexp = regexp_tag + r'(\s*' + regexp_tag + r')+'
     text_new = re.sub(regexp, func_repl, text_new)
 
+    # Write output files
+    abs_txt_file = os.path.abspath(txt_file)
+    abs_dic_file = os.path.abspath(dic_file)
+
     # Output: text file
     with open(txt_file, 'w', encoding='utf-8') as fic_txt:
         fic_txt.write(text_new)
@@ -117,6 +122,8 @@ def convert_latex_to_text(tex_file, output_file=None, dictionary_file=None):
     # Output: dictionary file
     with open(dic_file, 'w', encoding='utf-8') as fic_dic:
         yaml.dump(dictionary, fic_dic, default_flow_style=False, allow_unicode=True)
+
+    return abs_txt_file, abs_dic_file
 
 if __name__ == "__main__":
     # Arguments

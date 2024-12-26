@@ -66,9 +66,14 @@ def convert_text_to_latex(txt_file, dictionary_file=None, output_file=None):
         k += 1
     # print(f'{k} iteration(s) done.')
 
+        # Write output files
+        abs_new_txt_file = os.path.abspath(text_new)
+
     # Write the result
     with open(tex_file, 'w', encoding='utf-8') as fic_tex:
         fic_tex.write(text_new)
+
+    return abs_new_txt_file
 
 if __name__ == "__main__":
     # Arguments
