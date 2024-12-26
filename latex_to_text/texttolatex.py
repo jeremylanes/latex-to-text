@@ -10,8 +10,8 @@ import argparse
 import re
 import os
 import yaml
-from constants import *
-from constants_perso import *  # Personal customization
+from .constants import *
+from .constants_perso import *  # Personal customization
 
 #--------------------------------------------------
 #--------------------------------------------------

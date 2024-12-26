@@ -15,8 +15,8 @@ import re
 import sys
 import os
 import yaml
-from constants import *    # Definition of the tag symbol and special commands/environments
-from constants_perso import *  # Personal customization
+from .constants import *    # Definition of the tag symbol and special commands/environments
+from .constants_perso import *  # Personal customization
 
 #--------------------------------------------------
 #--------------------------------------------------
