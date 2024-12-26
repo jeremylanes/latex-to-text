@@ -1,0 +1,1 @@
+from latextotext import convert_latex_to_text
