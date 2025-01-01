@@ -6,7 +6,7 @@
 # USE 'constants_perso' to declare your modifications
 
 # the tag for replacement
-tag = '€'
+tag = '#' # # is better than €, in the translation with € there is no problem
 
 
 # 1. list of LaTeX environments whose content will be discarded

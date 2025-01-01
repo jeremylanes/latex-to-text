@@ -10,9 +10,7 @@
 # Licence CC-BY-SA 4.0
 
 import argparse
-import pathlib
 import re
-import sys
 import os
 import yaml
 from .constants import *    # Definition of the tag symbol and special commands/environments
@@ -57,7 +55,7 @@ def convert_latex_to_text(tex_file, output_file=None, dictionary_file=None):
         https://stackoverflow.com/questions/33962371"""
         nonlocal count
         dictionary[count] = m.group(0)  # Add old string found to the dic
-        tag_str = tag + str(count) + tag  # tag = '€' is defined in 'constants.py'
+        tag_str = tag + str(count) + tag  # tag = '#' is defined in 'constants.py'
         count += 1
         return tag_str  # New string for pattern replacement
 

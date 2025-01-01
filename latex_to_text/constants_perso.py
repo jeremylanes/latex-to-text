@@ -4,7 +4,7 @@
 
 
 # Need to modify the tag? It's there:
-# tag = '€'
+# tag = '#'
 
 
 # 1. list of personal LaTeX environments whose content will be discarded
