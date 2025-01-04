@@ -55,7 +55,7 @@ def convert_latex_to_text(tex_file, output_file=None, dictionary_file=None):
         https://stackoverflow.com/questions/33962371"""
         nonlocal count
         dictionary[count] = m.group(0)  # Add old string found to the dic
-        tag_str = tag + str(count) + tag  # tag = '#' is defined in 'constants.py'
+        tag_str = tag + str(count) + close_tag  # tag = '<ignore>' is defined in 'constants.py'
         count += 1
         return tag_str  # New string for pattern replacement
 
@@ -105,7 +105,7 @@ def convert_latex_to_text(tex_file, output_file=None, dictionary_file=None):
     text_new = re.sub(r'\s{' + str(n) + r',}(?=\s)', func_repl, text_new, flags=re.MULTILINE | re.DOTALL)
 
     # replace consecutive tags with one tag (even if separated by whitespace)
-    regexp_tag = tag + r'\d+' + tag
+    regexp_tag = tag + r'\d+' + close_tag
     regexp = regexp_tag + r'(\s*' + regexp_tag + r')+'
     text_new = re.sub(regexp, func_repl, text_new)
 

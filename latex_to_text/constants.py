@@ -6,7 +6,8 @@
 # USE 'constants_perso' to declare your modifications
 
 # the tag for replacement
-tag = '#' # # is better than €, in the translation with € there is no problem
+tag = '<ignore>' # This stage is used because it is supported by most automatic translators.
+close_tag = '</ignore>'
 
 
 # 1. list of LaTeX environments whose content will be discarded
