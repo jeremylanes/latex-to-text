@@ -12,7 +12,9 @@ import os
 from dataclasses import dataclass
 
 import yaml
-from constants import *
+from .constants import *
+
+
 # from .constants_perso import *  # Personal customization
 
 #--------------------------------------------------
@@ -37,13 +39,13 @@ class TextToLatex:
 
         # Dictionary file name
         if dictionary_file:
-            dic_file = dictionary_file    # Name given by user
+            dic_file = dictionary_file  # Name given by user
         else:
             dic_file = file_name + '.dic'  # If no name add a .dic extension
 
         # Output file name
         if output_file:
-            tex_file = output_file    # Name given by user
+            tex_file = output_file  # Name given by user
         else:
             tex_file = file_name + '.tex'  # If no name add a .tex extension
 
@@ -71,7 +73,7 @@ class TextToLatex:
                 if number_of_subs_made > 0:
                     keep_replacing = True
             k += 1
-        # print(f'{k} iteration(s) done.')
+            # print(f'{k} iteration(s) done.')
 
             # Write output files
             abs_new_txt_file = os.path.abspath(text_new)
@@ -81,6 +83,7 @@ class TextToLatex:
             fic_tex.write(text_new)
 
         return abs_new_txt_file
+
 
 if __name__ == "__main__":
     # Arguments
