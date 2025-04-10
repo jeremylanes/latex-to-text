@@ -12,28 +12,37 @@
 import argparse
 import re
 import os
-import yaml # todo: add this in requirements.txt
-from .constants import *    # Definition of the tag symbol and special commands/environments
-from .constants_perso import *  # Personal customization
+from dataclasses import dataclass
+
+import yaml  # todo: add this in requirements.txt
+from constants import *  # Definition of the tag symbol and special commands/environments
+from constants_perso import *  # Personal customization
+
 
 #--------------------------------------------------
 #--------------------------------------------------
 
-class LatexToText():
-    
+@dataclass
+class LatexToText:
+    open_tag: str = tag
+    close_tag: str = close_tag
+
+    if not open_tag or not close_tag:
+        raise ValueError('Must have open_tag and close_tag')
+
     def convert_latex_to_text(self, tex_file, output_file=None, dictionary_file=None):
         # Get argument: a tex file
         file_name, file_extension = os.path.splitext(tex_file)
 
         # Output file name
         if output_file:
-            txt_file = output_file    # Name given by user
+            txt_file = output_file  # Name given by user
         else:
             txt_file = file_name + '.txt'  # If no name add a .txt extension
 
         # Dictionary file name
         if dictionary_file:
-            dic_file = dictionary_file    # Name given by user
+            dic_file = dictionary_file  # Name given by user
         else:
             dic_file = file_name + '.dic'  # If no name add a .dic extension
 
@@ -57,7 +66,7 @@ class LatexToText():
             https://stackoverflow.com/questions/33962371"""
             nonlocal count
             dictionary[count] = m.group(0)  # Add old string found to the dic
-            tag_str = tag + str(count) + close_tag  # tag = '<ignore>' is defined in 'constants.py'
+            tag_str = self.open_tag + str(count) + self.close_tag  # tag = '<ignore>' is defined in 'constants.py'
             count += 1
             return tag_str  # New string for pattern replacement
 
@@ -103,11 +112,11 @@ class LatexToText():
 
         ### PART 6 - Save space on tags and whitespace ###
         # replace at least n consecutive whitespace characters with a tag (and leave one whitespace character unchanged)
-        n = 1 + len(tag + str(count) + tag)
+        n = 1 + len(self.open_tag + str(count) + self.open_tag)
         text_new = re.sub(r'\s{' + str(n) + r',}(?=\s)', func_repl, text_new, flags=re.MULTILINE | re.DOTALL)
 
         # replace consecutive tags with one tag (even if separated by whitespace)
-        regexp_tag = tag + r'\d+' + close_tag
+        regexp_tag = self.open_tag + r'\d+' + self.close_tag
         regexp = regexp_tag + r'(\s*' + regexp_tag + r')+'
         text_new = re.sub(regexp, func_repl, text_new)
 
@@ -125,9 +134,11 @@ class LatexToText():
 
         return abs_txt_file, abs_dic_file
 
+
 if __name__ == "__main__":
     # Arguments
-    parser = argparse.ArgumentParser(description='Conversion a LaTex file to a text file keeping apart commands and maths.')
+    parser = argparse.ArgumentParser(
+        description='Conversion a LaTex file to a text file keeping apart commands and maths.')
     parser.add_argument('inputfile', help='input LaTeX filename')
     parser.add_argument('outputfile', nargs='?', help='output text filename')
     parser.add_argument('dicfile', nargs='?', help='output dictionary filename')
