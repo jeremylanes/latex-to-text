@@ -15,8 +15,8 @@ import os
 from dataclasses import dataclass
 
 import yaml  # todo: add this in requirements.txt
-from constants import *  # Definition of the tag symbol and special commands/environments
-from constants_perso import *  # Personal customization
+from .constants import *  # Definition of the tag symbol and special commands/environments
+from .constants_perso import *  # Personal customization
 
 
 #--------------------------------------------------
