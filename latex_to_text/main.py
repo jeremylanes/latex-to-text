@@ -1,11 +1,15 @@
 import argparse
+from dataclasses import dataclass
 
+from .constants import tag, close_tag
 from .latextotext import LatexToText
 from .texttolatex import TextToLatex
 
 
+@dataclass
 class LatexConverter(LatexToText, TextToLatex):
-    pass
+    open_tag: str = tag
+    close_tag: str = close_tag
 
 ## latex to text
 # if __name__ == "__main__":
